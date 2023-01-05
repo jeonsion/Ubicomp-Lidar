@@ -12,8 +12,9 @@ pcd = pcd.voxel_down_sample(voxel_size=0.5)
 print(f"Points after downsampling: {len(pcd.points)}")
 
 
-#o3d.visualization.draw_geometries([pcd])
 
+
+#pcd, inliers = pcd.remove_statistical_outlier(nb_neighbors=20, std_ratio=2.0)
 pcd, inliers = pcd.remove_radius_outlier(nb_points=20, radius=0.5)
 inlier_cloud = pcd.select_by_index(inliers)
 outlier_cloud = pcd.select_by_index(inliers, invert=True)
